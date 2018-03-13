@@ -1,0 +1,41 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.9.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.cap'
+version = '1.0'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+
+	compile('org.springframework.boot:spring-boot-starter-data-jpa'){
+	    exclude module:"hibernate-entitymanager"  
+	}
+	
+	compile('javax.inject:javax.inject:1')
+	compile("org.apache.tomcat.embed:tomcat-embed-jasper")
+	compile files('./src/main/resources/ojdbc6-11.2.0.3.jar')
+	compile('org.eclipse.persistence:org.eclipse.persistence.jpa:2.6.3')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile("javax.servlet:jstl")
+	compile("com.google.code.gson:gson:2.2.2")
+	compile('org.codehaus.jackson:jackson-mapper-asl:1.9.9')
+}
